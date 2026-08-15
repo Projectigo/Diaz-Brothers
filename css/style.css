@@ -1,0 +1,217 @@
+:root{
+  --bg:#0b0b0f;
+  --panel:#14141b;
+  --text:#f5f5f7;
+  --muted:#a9a9b2;
+  --pink:#ff3f86;
+  --pink2:#ff6aa2;
+  --line:#2a2a35;
+  --max:760px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:
+radial-gradient(circle at top right, rgba(255,63,134,.13), transparent 34%),
+linear-gradient(180deg,#0b0b0f 0%,#101016 100%);
+color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+min-height:100%}
+body{min-height:100vh}
+a{color:inherit}
+.shell{width:min(calc(100% - 28px),var(--max));margin:0 auto;padding:34px 0 28px}
+.brand{display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:#fff}
+.mark{width:29px;height:29px;border:2px solid var(--pink);transform:rotate(45deg);border-radius:7px;display:inline-block;position:relative}
+.mark:after{content:"";position:absolute;inset:6px;border:2px solid #fff;border-radius:4px}
+.hero{margin-top:52px}
+.eyebrow{color:var(--pink2);font-size:.8rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+h1{font-size:clamp(2.35rem,8vw,4.7rem);line-height:.95;letter-spacing:-.055em;margin:0}
+.role{margin-top:18px;color:var(--muted);font-size:1.04rem}
+.tag{margin:26px 0 0;font-size:1.16rem;line-height:1.55;max-width:590px}
+.card{margin-top:34px;background:rgba(20,20,27,.86);border:1px solid var(--line);border-radius:22px;padding:22px;backdrop-filter:blur(10px);box-shadow:0 16px 50px rgba(0,0,0,.25)}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:58px;border-radius:15px;text-decoration:none;font-weight:800;letter-spacing:.01em;margin-top:12px;border:1px solid var(--line);background:#1a1a22;transition:.16s ease}
+.btn:hover{transform:translateY(-1px);border-color:#444}
+.btn.primary{background:linear-gradient(135deg,var(--pink),#d72d70);border-color:transparent;color:#fff;box-shadow:0 10px 28px rgba(255,63,134,.22)}
+.btn.secondary{background:#fff;color:#101016;border-color:#fff}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.meta .btn{margin:0;min-height:52px}
+.divider{height:1px;background:var(--line);margin:26px 0}
+.brother{display:flex;justify-content:space-between;gap:16px;align-items:center;text-decoration:none;padding:17px 18px;border:1px solid var(--line);border-radius:15px;background:#111118}
+.brother span:last-child{color:var(--pink);font-weight:900}
+.small{font-size:.83rem;color:var(--muted);line-height:1.55}
+.lowkey{display:flex;justify-content:center;gap:18px;margin-top:26px;font-size:.76rem;color:#777784}
+.lowkey a{text-decoration:none}
+.footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;align-items:end}
+.footer strong{display:block;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}
+.footer p{margin:6px 0 0}
+.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px}
+.person-card{display:block;text-decoration:none;background:rgba(20,20,27,.88);border:1px solid var(--line);border-radius:20px;padding:24px;min-height:190px}
+.person-card:hover{border-color:var(--pink)}
+.person-card .name{font-size:1.7rem;font-weight:900;letter-spacing:-.03em;margin-top:42px}
+.person-card .go{margin-top:14px;color:var(--pink);font-weight:800}
+.fade-in{animation:rise .55s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media(max-width:580px){
+  .shell{padding-top:24px}
+  .hero{margin-top:40px}
+  .meta,.home-grid{grid-template-columns:1fr}
+  .footer{align-items:flex-start;flex-direction:column}
+}
+
+
+/* --- Diaz Brothers micro-intro experience --- */
+.intro{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,63,134,.20), transparent 24%),
+    #0b0b0f;
+  overflow:hidden;
+  pointer-events:none;
+  animation:introExit .55s cubic-bezier(.7,0,.2,1) 1.45s forwards;
+}
+.intro::before,
+.intro::after{
+  content:"";
+  position:absolute;
+  width:42vw;
+  max-width:340px;
+  aspect-ratio:1;
+  border:1px solid rgba(255,63,134,.18);
+  border-radius:28%;
+  transform:rotate(45deg);
+}
+.intro::before{animation:ringPulse 1.2s ease-out .1s both}
+.intro::after{width:28vw;max-width:220px;animation:ringPulse 1.2s ease-out .24s both}
+.intro-core{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  padding:28px;
+}
+.intro-mark{
+  width:58px;
+  height:58px;
+  margin:0 auto 24px;
+  border:2px solid var(--pink);
+  border-radius:13px;
+  transform:rotate(45deg) scale(.55);
+  opacity:0;
+  animation:markPop .55s cubic-bezier(.2,.9,.3,1.35) .12s forwards;
+  box-shadow:0 0 42px rgba(255,63,134,.16);
+}
+.intro-mark::after{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border:2px solid #fff;
+  border-radius:7px;
+}
+.intro-kicker{
+  color:var(--pink2);
+  font-size:.72rem;
+  font-weight:850;
+  letter-spacing:.23em;
+  text-transform:uppercase;
+  opacity:0;
+  transform:translateY(8px);
+  animation:textIn .38s ease .43s forwards;
+}
+.intro-name{
+  margin-top:9px;
+  font-size:clamp(2rem,9vw,4rem);
+  font-weight:900;
+  letter-spacing:-.05em;
+  opacity:0;
+  transform:translateY(12px) scale(.98);
+  animation:textIn .42s cubic-bezier(.2,.8,.2,1) .58s forwards;
+}
+.intro-line{
+  width:0;
+  height:2px;
+  margin:16px auto 0;
+  background:linear-gradient(90deg,transparent,var(--pink),transparent);
+  animation:lineSweep .48s ease .79s forwards;
+}
+.page-reveal{
+  opacity:0;
+  transform:translateY(16px) scale(.995);
+  filter:blur(7px);
+  animation:pageReveal .7s cubic-bezier(.2,.8,.2,1) 1.38s forwards;
+}
+.hero h1{
+  position:relative;
+}
+.hero h1::after{
+  content:"";
+  display:block;
+  width:42px;
+  height:3px;
+  margin-top:18px;
+  border-radius:3px;
+  background:linear-gradient(90deg,var(--pink),var(--pink2));
+  transform-origin:left;
+  animation:accentGrow .65s cubic-bezier(.2,.8,.2,1) 1.78s both;
+}
+.card{
+  animation:cardFloatIn .65s cubic-bezier(.2,.8,.2,1) 1.65s both;
+}
+.btn.primary{
+  position:relative;
+  overflow:hidden;
+}
+.btn.primary::after{
+  content:"";
+  position:absolute;
+  top:-30%;
+  left:-55%;
+  width:30%;
+  height:160%;
+  transform:skewX(-20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.42),transparent);
+  animation:buttonShine 1.05s ease 2.35s 1 both;
+}
+@keyframes introExit{
+  0%{opacity:1;transform:scale(1)}
+  70%{opacity:0;transform:scale(1.025)}
+  100%{opacity:0;visibility:hidden;transform:scale(1.035)}
+}
+@keyframes ringPulse{
+  0%{opacity:0;transform:rotate(45deg) scale(.55)}
+  45%{opacity:.7}
+  100%{opacity:0;transform:rotate(45deg) scale(1.18)}
+}
+@keyframes markPop{
+  to{opacity:1;transform:rotate(45deg) scale(1)}
+}
+@keyframes textIn{
+  to{opacity:1;transform:none}
+}
+@keyframes lineSweep{
+  to{width:150px}
+}
+@keyframes pageReveal{
+  to{opacity:1;transform:none;filter:none}
+}
+@keyframes accentGrow{
+  from{transform:scaleX(0);opacity:0}
+  to{transform:scaleX(1);opacity:1}
+}
+@keyframes cardFloatIn{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:none}
+}
+@keyframes buttonShine{
+  0%{left:-55%}
+  100%{left:125%}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .intro{display:none}
+  .page-reveal,.card,.hero h1::after,.btn.primary::after{
+    animation:none !important;
+    opacity:1 !important;
+    transform:none !important;
+    filter:none !important;
+  }
+}
