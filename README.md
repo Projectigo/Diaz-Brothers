@@ -33,3 +33,10 @@ If you change these paths, regenerate the QR codes.
 ## Phone privacy
 Phone numbers are intentionally excluded from the website source and from both vCard contact files.
 Recipients must use the physical business card to obtain and manually add the phone number.
+
+## Robust GitHub Pages fix
+- Uses absolute `/Diaz-Brothers/...` paths for CSS/JS and sibling navigation.
+- Each person's `contact.vcf` lives in the exact same folder as their `index.html`.
+- The Add Contact button navigates directly to `contact.vcf` instead of forcing an HTML download.
+- `.nojekyll` is included so GitHub Pages publishes the static file tree unchanged.
+- `health.txt` can be used to verify the newest deployment is live.
